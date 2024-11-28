@@ -1,9 +1,14 @@
 from dataclasses import dataclass
 
-from app.db.models.location import Location
 
 @dataclass
 class Device:
+    @dataclass
+    class Location:
+        latitude: float
+        longitude: float
+        altitude_meters: float
+        accuracy_meters: float
     id: str
     brand: str
     model: str
