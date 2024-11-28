@@ -44,7 +44,7 @@ query_for_create_devices_and_connection  = """
         d2.altitude_meters = $altitude_meters2,
         d2.accuracy_meters = $accuracy_meters2
 
-    MERGE (d1)-[r:CONNECTED { timestamp: $timestamp }]->(d2)
+    MERGE (d1)-[r:INTERACTED_WITH { timestamp: $timestamp }]->(d2)
     ON CREATE SET r.method = $method,
         r.bluetooth_version = $bluetooth_version,
         r.signal_strength_dbm = $signal_strength_dbm,
