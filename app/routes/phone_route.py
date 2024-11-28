@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 
 from app.db.repositories.phone_tracker_payload_repository import insert_phone_tracker_payload
-from app.db.services.json_to_model_service import json_to_model
+from app.db.services.phone_tracker_payload import json_to_model
 
 phone_blueprint = Blueprint("phone", __name__)
 
