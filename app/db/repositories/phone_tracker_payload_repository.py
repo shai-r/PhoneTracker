@@ -1,12 +1,17 @@
 
 from app.db.models import PhoneTrackerPayload
+from app.db.repositories.interaction_repository import is_concurrent_call
 from app.db.repositories.neo4j_repository import insert_to_neo4j
 from app.db.services.json_to_model_service import query_for_create_devices_and_connection, \
     convert_phone_tracker_payload_to_params
 
 
 def insert_phone_tracker_payload(phone_tracker_payload: PhoneTrackerPayload):
-    if phone_tracker_payload.from_device.id == phone_tracker_payload.to_device.id:
+    from_device_id = phone_tracker_payload.from_device.id
+    to_device_id = phone_tracker_payload.to_device.id
+    timestamp = phone_tracker_payload.interaction.timestamp
+    if  (from_device_id == to_device_id or
+            is_concurrent_call(from_device_id, to_device_id, timestamp)):
         return None
     return insert_to_neo4j(
         query=query_for_create_devices_and_connection,
