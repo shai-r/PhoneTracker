@@ -10,6 +10,7 @@ class Device:
         altitude_meters: float
         accuracy_meters: float
     id: str
+    name: str
     brand: str
     model: str
     os: str

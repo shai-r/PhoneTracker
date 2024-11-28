@@ -6,8 +6,6 @@ from app.db.models import Interaction
 def convert_interaction_to_model(interaction_data: dict) -> Interaction:
     try:
         return Interaction(
-            from_device=interaction_data['from_device'],
-            to_device=interaction_data['to_device'],
             method=interaction_data['method'],
             timestamp=datetime.fromisoformat(interaction_data['timestamp']),
             bluetooth_version=interaction_data.get('bluetooth_version'),

@@ -24,6 +24,7 @@ def convert_device_to_model(device_data: dict) -> Device:
 
     return Device(
         id=device_data['id'],
+        name=device_data['name'],
         brand=device_data['brand'],
         model=device_data['model'],
         os=device_data['os'],
